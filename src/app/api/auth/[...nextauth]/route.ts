@@ -1,3 +1,4 @@
+import { createOrUpdateUser } from "@/app/utils/supabase";
 import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
 
@@ -9,6 +10,11 @@ const handler = NextAuth(
                 clientSecret: process.env.GOOGLE_CLIENT_SECRET??""
             }),
         ],
+        events: {
+            signIn: async ({ user }) => {
+                await createOrUpdateUser(user);
+            },
+        }
     }
 );
 
