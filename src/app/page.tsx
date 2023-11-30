@@ -1,5 +1,11 @@
 import Head from 'next/head';
-import Link from 'next/link';
+import dynamic from 'next/dynamic';
+import CTA from './components/CTA';
+
+// Dynamically import SinginButton with SSR disabled
+const SinginButton = dynamic(() => import('./components/SinginButton'), {
+  ssr: false,
+});
 
 export default function Home() {
   return (
@@ -20,9 +26,7 @@ export default function Home() {
         </p>
 
         <div className="mt-6">
-        <Link href="/signup" className="px-8 py-3 font-semibold rounded-md text-white bg-blue-600 hover:bg-blue-700">
-          Signup
-        </Link>
+          <CTA />
         </div>
       </main>
 
