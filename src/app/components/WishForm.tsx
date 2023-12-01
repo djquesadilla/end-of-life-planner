@@ -6,29 +6,36 @@ import React from "react";
 
 const WishForm = () => {
     const [wish, setWish] = useState("");
+    const [submitMessage, setSubmitMessage] = useState({ text: "", type: "" });
     const { data: session } = useSession();
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
 
         if (!session) {
-            throw new Error("You must be signed in to submit a wish.");
+            setSubmitMessage({ text: "You must be signed in to submit a wish.", type: "error" });
+            return;
         }
 
         const { data: wishData, error: wishError } = await createOrUpdateWish(session.user, wish)
 
         if (wishError) {
-            // TODO: add error message
-            throw new Error(wishError.message);
+            setSubmitMessage({ text: "Something went wrong.", type: "error" });
+            throw new Error(wishError);
         } else {
             // Handle success and clear form
-            // TODO: add success message
+            setSubmitMessage({ text: "Your wish has been saved successfully!", type: "success" });
             setWish("");
         }
     }
 
     return (
         <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
+            {submitMessage.text && (
+                <div className={`alert ${submitMessage.type === "error" ? "alert-error" : "alert-success"}`}>
+                    {submitMessage.text}
+                </div>
+            )}
             <textarea
                 rows={4}
                 className="border p-2"
