@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import CTA from './components/CTA';
+import Dashboard from './components/Dashboard';
 
 // Dynamically import SinginButton with SSR disabled
 const SinginButton = dynamic(() => import('./components/SinginButton'), {
@@ -25,6 +26,9 @@ export default function Home() {
           Share your wishes for end of life with loved ones.
         </p>
 
+        <div className="mt-6">
+          <Dashboard />
+        </div>
         <div className="mt-6">
           <CTA />
         </div>
