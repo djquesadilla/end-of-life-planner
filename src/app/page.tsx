@@ -1,10 +1,10 @@
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
-import CTA from './components/CTA';
-import Dashboard from './components/Dashboard';
+import CTA from './components/landing-page/CTA';
+import Dashboard from './components/dashboard/Dashboard';
 
 // Dynamically import SinginButton with SSR disabled
-const SinginButton = dynamic(() => import('./components/SinginButton'), {
+const SinginButton = dynamic(() => import('./components/signin/SinginButton'), {
   ssr: false,
 });
 

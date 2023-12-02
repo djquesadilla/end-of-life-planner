@@ -1,7 +1,7 @@
 "use client";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
-import { createOrUpdateWish } from "../utils/supabase";
+import { createOrUpdateWish } from "../../utils/supabase";
 import React from "react";
 
 const WishForm = () => {

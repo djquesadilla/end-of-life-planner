@@ -1,5 +1,5 @@
 import React from "react";
-import SigninButton from "./SinginButton";
+import SigninButton from "../signin/SinginButton";
 
 const CTA = () => {
     return (
